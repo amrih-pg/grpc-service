@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package myservice;
+
+import "google/protobuf/any.proto";
+
+message MyRequest {
+  google.protobuf.Any json_data = 1;
+}
+
+message MyResponse {
+  string message = 1;
+}
+
+service MyService {
+  rpc MyMethod (MyRequest) returns (MyResponse);
+}
