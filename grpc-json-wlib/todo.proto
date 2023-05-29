@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+import "proto/google/protobuf/empty.proto";
+import "proto/google/api/annotations.proto";
+
+message CreateTodoRequest {
+  string title = 1;
+  bool completed = 2;
+}
+
+message Todo {
+  string id = 1;
+  string title = 2;
+  bool completed = 3;
+}
+
+message DeleteTodoRequest {
+  string id = 1;
+}
+
+service TodoService {
+  rpc CreateTodo(CreateTodoRequest) returns (Todo) {
+    option (google.api.http) = {
+      post: "/v1/todos"
+      body: "*"
+    };
+  }
+  rpc DeleteTodo(DeleteTodoRequest) returns (google.protobuf.Empty) {
+    option (google.api.http) = {
+      delete: "/v1/todos/{id}"
+    };
+  }
+}
