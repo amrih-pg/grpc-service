@@ -13,6 +13,7 @@ addReflection(server, 'descriptor_set.bin')
 server.addService(myservicePackage.TodoService.service, {
   CreateTodo: (call, callback) => {
     const request = call.request;
+    console.log(request);
     let jsonData;
     if (request ) {
       const buffer = request;
